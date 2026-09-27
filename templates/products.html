@@ -1,0 +1,313 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DK MART - Products</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+        <span class="dk">DK</span>
+        <span class="mart">MART</span>
+    </div>
+
+    <div class="search-box">
+
+        <input type="text"
+               id="searchInput"
+               placeholder="Search Products...">
+
+        <button onclick="searchProducts()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+    </div>
+
+    <div class="header-icons">
+
+        {% if session.get('user') %}
+
+        <a href="/myorders">
+            <i class="fa-solid fa-box"></i> Orders
+        </a>
+
+        <a href="/cart">
+            <i class="fa-solid fa-cart-shopping"></i> Cart
+        </a>
+
+        <a href="/logout">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+
+        {% else %}
+
+        <a href="/login">
+            <i class="fa-regular fa-user"></i> Login
+        </a>
+
+        <a href="/register">
+            <i class="fa-solid fa-user-plus"></i> Register
+        </a>
+
+        <a href="/wishlist">
+            <i class="fa-regular fa-heart"></i> Wishlist
+        </a>
+
+        <a href="/cart">
+            <i class="fa-solid fa-cart-shopping"></i> Cart
+        </a>
+
+        {% endif %}
+
+    </div>
+
+</header>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <a href="/">Home</a>
+
+    <a href="/products">Products</a>
+
+    <a href="/categories">Categories</a>
+
+    <a href="#">Today's Deals</a>
+
+    <a href="/contact">Contact</a>
+
+</nav>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="featured">
+
+    <h2>
+        <i class="fa-solid fa-store"></i>
+        Our Products
+    </h2>
+
+    <div class="product-container">
+
+        {% for product in products %}
+
+        <div class="product-card">
+
+            <!-- Product Image -->
+
+            <a href="/product/{{ product[0] }}">
+
+                <img src="{{ url_for('static', filename=product[3]) }}"
+                     alt="{{ product[1] }}">
+
+            </a>
+
+
+            <!-- Product Name -->
+
+            <h3>
+
+                <a href="/product/{{ product[0] }}"
+                   style="text-decoration:none;color:inherit;">
+
+                    {{ product[1] }}
+
+                </a>
+
+            </h3>
+
+
+            <!-- Rating -->
+
+            <div class="rating">
+
+                ⭐⭐⭐⭐⭐
+
+            </div>
+
+
+            <!-- Price -->
+
+            <p class="price">
+
+                ₹{{ product[2] }}
+
+            </p>
+
+
+            <!-- Wishlist Button -->
+
+            <button class="wishlist-btn"
+                    onclick="addToWishlist('{{ product[1] }}','{{ product[3] }}',{{ product[2] }})">
+
+                ❤️ Wishlist
+
+            </button>
+
+
+            <!-- Add To Cart Button -->
+
+            <button class="add-cart-btn"
+                    onclick="addToCart('{{ product[1] }}', {{ product[2] }})">
+
+                🛒 Add to Cart
+
+            </button>
+
+            <button class="order-btn"
+        onclick="orderNow('{{ product[1] }}', {{ product[2] }})">
+    🛍️ Order Now
+</button>
+
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<script>
+
+
+/* ================= SEARCH ================= */
+
+function searchProducts(){
+
+    let input =
+        document.getElementById("searchInput").value.trim();
+
+    if(input == ""){
+
+        alert("Please enter a product name");
+
+        return;
+
+    }
+
+    window.location =
+        "/products?search=" + encodeURIComponent(input);
+
+}
+
+
+/* ================= ADD TO CART ================= */
+
+function addToCart(name, price){
+
+    let userLogged = "{{ session.get('user') }}";
+
+    if(userLogged == ""){
+
+        alert("Please Login First");
+
+        window.location = "/login";
+
+        return;
+
+    }
+
+
+    let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+
+    cart.push({
+
+        name: name,
+
+        price: price,
+
+        quantity: 1
+
+    });
+
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+
+    alert(name + " Added to Cart");
+
+}
+
+
+/* ================= ADD TO WISHLIST ================= */
+
+function addToWishlist(name, image, price){
+
+    let wishlist =
+        JSON.parse(localStorage.getItem("wishlist")) || [];
+
+
+    wishlist.push({
+
+        name: name,
+
+        image: image,
+
+        price: price
+
+    });
+
+
+    localStorage.setItem(
+        "wishlist",
+        JSON.stringify(wishlist)
+    );
+
+
+    alert(name + " Added to Wishlist ❤️");
+
+}
+
+</script>
+function orderNow(name, price){
+
+    let userLogged = "{{ session.get('user') }}";
+
+    if(userLogged == ""){
+
+        alert("Please Login First");
+
+        window.location = "/login";
+
+        return;
+    }
+
+    localStorage.setItem("orderProduct", JSON.stringify({
+        name: name,
+        price: price,
+        quantity: 1
+    }));
+
+    window.location = "/checkout";
+}
+
+
+</body>
+
+</html>
+```

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DK MART</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo">
+            <span class="dk">DK</span>
+            <span class="mart">MART</span>
+        </div>
+
+        <div class="search-box">
+
+            <input type="text" id="searchInput" placeholder="Search for products...">
+
+            <button onclick="searchProducts()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="header-icons">
+
+            <a href="/login">
+                <i class="fa-regular fa-user"></i> Login
+            </a>
+
+            <a href="#">
+                <i class="fa-regular fa-heart"></i> Wishlist
+            </a>
+
+            <a href="/cart">
+                <i class="fa-solid fa-cart-shopping"></i> Cart
+            </a>
+
+        </div>
+
+    </header>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+      <a href="/categories">Categories</a>
+        <a href="#">Today's Deals</a>
+        <a href="#">Contact</a>
+
+    </nav>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>Welcome to DK MART</h1>
+
+            <p>Your Trusted Online Shopping Store</p>
+
+            <a href="/products" class="shop-btn">
+                Shop Now
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+
+    <section class="services">
+
+        <div class="service-box">
+            <i class="fas fa-truck"></i>
+            <h3>Free Delivery</h3>
+            <p>Orders above ₹999</p>
+        </div>
+
+        <div class="service-box">
+            <i class="fas fa-credit-card"></i>
+            <h3>Secure Payment</h3>
+            <p>100% Safe Payment</p>
+        </div>
+
+        <div class="service-box">
+            <i class="fas fa-undo"></i>
+            <h3>Easy Returns</h3>
+            <p>7 Days Return</p>
+        </div>
+
+        <div class="service-box">
+            <i class="fas fa-headset"></i>
+            <h3>24/7 Support</h3>
+            <p>Customer Care</p>
+        </div>
+
+    </section>
+
+    <!-- ================= FEATURED PRODUCTS ================= -->
+
+    <section class="featured">
+
+        <h2>Featured Products</h2>
+
+        <div class="product-container">
+
+            <div class="product-card">
+                <img src="{{ url_for('static', filename='headphone.jpg') }}">
+                <h3>Wireless Headphone</h3>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <p class="price">₹1,999 <span>₹2,499</span></p>
+               <button onclick="addToCart('Wireless Headphone',1999)">
+    Add to Cart
+</button>
+            </div>
+
+            <div class="product-card">
+                <img src="{{ url_for('static', filename='mobile.jpg') }}">
+                <h3>Smart Mobile</h3>
+                <div class="rating">⭐⭐⭐⭐☆</div>
+                <p class="price">₹15,999 <span>₹17,999</span></p>
+             <button onclick="addToCart('Smart Mobile',15999)">
+    Add to Cart
+</button>
+            </div>
+
+            <div class="product-card">
+                <img src="{{ url_for('static', filename='laptop.jpg') }}">
+                <h3>Gaming Laptop</h3>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <p class="price">₹54,999 <span>₹59,999</span></p>
+               <button onclick="addToCart('Gaming Laptop',54999)">
+    Add to Cart
+</button>
+            </div>
+
+            <div class="product-card">
+                <img src="{{ url_for('static', filename='headphone.jpg') }}">
+                <h3>Bluetooth Speaker</h3>
+                <div class="rating">⭐⭐⭐⭐☆</div>
+                <p class="price">₹1,499 <span>₹1,999</span></p>
+                <button>Add to Cart</button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= SHOP BY CATEGORY ================= -->
+
+    <section class="categories">
+
+        <h2>Shop by Category</h2>
+
+        <div class="category-container">
+
+            <div class="category-card"><i class="fas fa-laptop"></i><h3>Electronics</h3></div>
+            <div class="category-card"><i class="fas fa-mobile-alt"></i><h3>Mobiles</h3></div>
+            <div class="category-card"><i class="fas fa-tshirt"></i><h3>Fashion</h3></div>
+            <div class="category-card"><i class="fas fa-shoe-prints"></i><h3>Footwear</h3></div>
+            <div class="category-card"><i class="fas fa-clock"></i><h3>Watches</h3></div>
+            <div class="category-card"><i class="fas fa-couch"></i><h3>Furniture</h3></div>
+
+        </div>
+
+    </section>
+        <!-- ================= TODAY'S DEALS ================= -->
+
+    <section class="deals">
+
+        <h2>🔥 Today's Deals</h2>
+
+        <div class="deals-container">
+
+            <div class="deal-card">
+                <span class="discount">-40%</span>
+                <img src="{{ url_for('static', filename='laptop.jpg') }}" alt="Laptop">
+                <h3>Gaming Laptop</h3>
+                <p>₹54,999</p>
+            </div>
+
+            <div class="deal-card">
+                <span class="discount">-25%</span>
+                <img src="{{ url_for('static', filename='mobile.jpg') }}" alt="Mobile">
+                <h3>Smart Mobile</h3>
+                <p>₹15,999</p>
+            </div>
+
+            <div class="deal-card">
+                <span class="discount">-50%</span>
+                <img src="{{ url_for('static', filename='headphone.jpg') }}" alt="Headphone">
+                <h3>Wireless Headphone</h3>
+                <p>₹1,999</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= NEWSLETTER ================= -->
+
+    <section class="newsletter">
+
+        <h2>Stay Updated!</h2>
+
+        <p>Subscribe to receive the latest offers and updates.</p>
+
+        <div class="newsletter-box">
+            <input type="email" placeholder="Enter your Email">
+            <button>Subscribe</button>
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-box">
+                <h2>DK MART</h2>
+                <p>Your Trusted Online Shopping Store.</p>
+            </div>
+
+            <div class="footer-box">
+                <h3>Quick Links</h3>
+                <a href="/">Home</a>
+                <a href="/products">Products</a>
+                <a href="/cart">Cart</a>
+                <a href="/login">Login</a>
+            </div>
+
+            <div class="footer-box">
+                <h3>Customer Care</h3>
+                <p>Email: support@dkmart.com</p>
+                <p>Phone: +91 9500637764</p>
+                <p>Mon - Sat : 9 AM - 8 PM</p>
+            </div>
+
+            <div class="footer-box">
+                <h3>Follow Us</h3>
+                <a href="#"><i class="fab fa-facebook"></i> Facebook</a><br>
+                <a href="#"><i class="fab fa-instagram"></i> Instagram</a><br>
+                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <p class="copyright">
+            © 2026 DK MART | All Rights Reserved.
+        </p>
+
+    </footer>
+    <script>
+
+function searchProducts(){
+
+    let input = document.getElementById("searchInput").value.trim();
+
+    if(input==""){
+
+        alert("Please enter a product name");
+        return;
+
+    }
+
+    window.location="/products?search=" + encodeURIComponent(input);
+
+}
+
+
+
+function addToCart(name, price){
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({
+        name:name,
+        price:price
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(name + " added to cart 🛒");
+
+}
+
+</script>
+ 
+</body>
+</html>
+   

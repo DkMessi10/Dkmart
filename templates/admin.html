@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DK MART - Admin Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        <span class="dk">DK</span>
+        <span class="mart">MART</span>
+    </div>
+
+    <div class="header-icons">
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+</header>
+
+<section class="featured">
+
+    <h2>👨‍💼 Admin Dashboard</h2>
+
+    <div class="category-container">
+
+        <div class="category-card">
+            <i class="fas fa-users"></i>
+            <h3>Total Users</h3>
+            <h2>{{ total_users }}</h2>
+        </div>
+
+        <div class="category-card">
+            <i class="fas fa-box"></i>
+            <h3>Total Orders</h3>
+            <h2>{{ total_orders }}</h2>
+        </div>
+
+        <div class="category-card">
+            <i class="fas fa-shopping-bag"></i>
+            <h3>Total Products</h3>
+            <h2>{{ total_products }}</h2>
+        </div>
+
+        <div class="category-card">
+            <i class="fas fa-envelope"></i>
+            <h3>Contact Messages</h3>
+            <h2>{{ total_contacts }}</h2>
+        </div>
+
+        <div class="category-card">
+            <i class="fas fa-star"></i>
+            <h3>Total Reviews</h3>
+            <h2>{{ total_reviews }}</h2>
+        </div>
+
+        <div style="text-align:center; margin-top:40px;">
+
+    <a href="/manage_products" class="shop-btn">
+        🛠️ Manage Products
+    </a>
+
+</div>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

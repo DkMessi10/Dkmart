@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product[1] }} - DK MART</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        <span class="dk">DK</span>
+        <span class="mart">MART</span>
+    </div>
+
+    <div class="header-icons">
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+        <a href="/cart">Cart</a>
+    </div>
+
+</header>
+
+<nav class="navbar">
+    <a href="/">Home</a>
+    <a href="/products">Products</a>
+    <a href="/categories">Categories</a>
+    <a href="/contact">Contact</a>
+</nav>
+
+<section class="product-details">
+
+    <div class="product-image">
+
+        <img src="{{ url_for('static', filename=product[3]) }}"
+             alt="{{ product[1] }}">
+
+    </div>
+
+    <div class="product-info">
+
+        <h1>{{ product[1] }}</h1>
+
+        <div class="rating">
+            ⭐⭐⭐⭐⭐
+        </div>
+
+        <h2>₹{{ product[2] }}</h2>
+
+        <p>{{ product[4] }}</p>
+
+        <button onclick="addToCart('{{ product[1] }}', {{ product[2] }})">
+            🛒 Add to Cart
+        </button>
+
+        <button onclick="window.location='/checkout'">
+            ⚡ Buy Now
+
+            <hr>
+
+<div class="review-section">
+
+    <h2>⭐ Write a Review</h2>
+
+    <form action="/add_review" method="POST">
+
+        <input type="hidden"
+               name="product_name"
+               value="{{ product[1] }}">
+
+        <input type="text"
+               name="user_name"
+               placeholder="Your Name"
+               required>
+
+        <select name="rating" required>
+
+            <option value="">Select Rating</option>
+            <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+            <option value="4">⭐⭐⭐⭐ (4)</option>
+            <option value="3">⭐⭐⭐ (3)</option>
+            <option value="2">⭐⭐ (2)</option>
+            <option value="1">⭐ (1)</option>
+
+        </select>
+
+        <textarea
+            name="review"
+            rows="4"
+            placeholder="Write your review..."
+            required></textarea>
+
+        <button type="submit">
+            Submit Review
+
+            <hr>
+
+<div class="review-list">
+
+    <h2>Customer Reviews</h2>
+
+    {% if reviews %}
+
+        {% for review in reviews %}
+
+        <div class="review-card">
+
+            <h3>{{ review[0] }}</h3>
+
+            <p>⭐ {{ review[1] }}/5</p>
+
+            <p>{{ review[2] }}</p>
+
+            <small>{{ review[3] }}</small>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No reviews yet. Be the first to review this product!</p>
+
+    {% endif %}
+
+</div>
+        </button>
+
+    </form>
+
+</div>
+        </button>
+
+    </div>
+
+</section>
+
+<script>
+function addToCart(name, price){
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({
+        name: name,
+        price: price,
+        quantity: 1
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(name + " Added to Cart 🛒");
+}
+</script>
+
+</body>
+</html>

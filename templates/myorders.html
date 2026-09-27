@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>My Orders - ShopMart</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>🛒 ShopMart</h1>
+
+
+<nav>
+
+<a href="/">🏠 Home</a>
+<a href="/products">🛍 Products</a>
+<a href="/cart">🛒 Cart</a>
+<a href="/myorders">📦 My Orders</a>
+<a href="/logout">🚪 Logout</a>
+
+</nav>
+
+
+</header>
+
+
+
+
+<h2 style="text-align:center;">
+📦 My Orders
+</h2>
+
+
+
+
+
+<div class="products-container">
+
+
+{% if orders %}
+
+
+
+{% for order in orders %}
+
+
+
+<div class="product">
+
+
+<h3>
+🛍 {{ order[2] }}
+</h3>
+
+
+<p>
+💰 Price: ₹{{ order[3] }}
+</p>
+
+
+<p>
+📅 Date: {{ order[4] }}
+</p>
+
+
+<p>
+🚚 Status: {{ order[5] }}
+</p>
+
+
+
+</div>
+
+
+
+{% endfor %}
+
+
+
+{% else %}
+
+
+<div class="product">
+
+<h3>
+No Orders Found 🛒
+</h3>
+
+
+<a href="/products">
+Continue Shopping
+</a>
+
+
+</div>
+
+
+{% endif %}
+
+
+
+</div>
+
+
+
+</body>
+
+</html>

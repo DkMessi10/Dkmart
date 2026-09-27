@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Wishlist - DK MART</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        <span class="dk">DK</span>
+        <span class="mart">MART</span>
+    </div>
+
+    <div class="header-icons">
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+        <a href="/cart">Cart</a>
+    </div>
+
+</header>
+
+<section class="featured">
+
+    <h2>❤️ My Wishlist</h2>
+
+    <div id="wishlistItems" class="product-container">
+
+    </div>
+
+</section>
+
+<script>
+
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+let box = document.getElementById("wishlistItems");
+
+if(wishlist.length == 0){
+
+    box.innerHTML = "<h2>Your Wishlist is Empty ❤️</h2>";
+
+}else{
+
+    wishlist.forEach(item=>{
+
+        box.innerHTML += `
+        <div class="product-card">
+
+            <img src="/static/${item.image}">
+
+            <h3>${item.name}</h3>
+
+            <p class="price">₹${item.price}</p>
+
+        </div>
+        `;
+
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Orders - DK MART</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        <span class="dk">DK</span>
+        <span class="mart">MART</span>
+    </div>
+
+    <div class="header-icons">
+        <a href="/admin">Dashboard</a>
+        <a href="/manage_products">Products</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+</header>
+
+<section class="featured">
+
+    <h2>📦 Manage Orders</h2>
+
+    <table class="product-table">
+
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        {% for order in orders %}
+
+        <tr>
+
+            <td>{{ order[0] }}</td>
+            <td>{{ order[1] }}</td>
+            <td>{{ order[2] }}</td>
+            <td>₹{{ order[3] }}</td>
+            <td>{{ order[4] }}</td>
+
+            <td>{{ order[5] }}</td>
+
+            <td>
+
+                <form action="/update_order_status/{{ order[0] }}" method="POST">
+
+                    <select name="status">
+
+                        <option value="Pending">Pending</option>
+                        <option value="Shipped">Shipped</option>
+                        <option value="Delivered">Delivered</option>
+
+                    </select>
+
+                    <button type="submit">
+                        Update
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</section>
+
+</body>
+</html>

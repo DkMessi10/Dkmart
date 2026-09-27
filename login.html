@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - ShopEasy</title>
+<link rel="stylesheet" href="iostyle.css">
+</head>
+<body>
+
+<div class="login-box">
+    <h2>Login</h2>
+
+    <form action="http://127.0.0.1:5000/login" method="POST">
+       <input type="email" name="email" placeholder="Email Address" required>
+
+        <input type="password" name="password" placeholder="Password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p>Don't have an account?
+        <a href="signup.html">Sign Up</a>
+    </p>
+</div>
+
+</body>
+</html>

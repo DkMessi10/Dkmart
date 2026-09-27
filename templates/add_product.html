@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - DK MART</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        <span class="dk">DK</span>
+        <span class="mart">MART</span>
+    </div>
+
+    <div class="header-icons">
+        <a href="/admin">Dashboard</a>
+        <a href="/manage_products">Manage Products</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+</header>
+
+<section class="contact-section">
+
+    <h2>➕ Add New Product</h2>
+
+    <form action="/save_product" method="POST" class="contact-form">
+
+        <input type="text"
+               name="name"
+               placeholder="Product Name"
+               required>
+
+        <input type="number"
+               name="price"
+               placeholder="Price"
+               required>
+
+        <input type="text"
+               name="image"
+               placeholder="Image Name (Example: mobile.jpg)"
+               required>
+
+        <textarea
+            name="description"
+            rows="4"
+            placeholder="Product Description"
+            required></textarea>
+
+        <input type="text"
+               name="category"
+               placeholder="Category (Mobile/Laptop/Headphone)"
+               required>
+
+        <button type="submit">
+            ➕ Add Product
+        </button>
+
+    </form>
+
+</section>
+
+</body>
+
+</html>

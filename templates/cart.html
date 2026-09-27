@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>DK MART Cart</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <div class="logo">
+        <span class="dk">DK</span>
+        <span class="mart">MART</span>
+    </div>
+
+
+    <div class="header-icons">
+
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+
+    </div>
+
+</header>
+
+
+
+<section class="featured">
+
+
+<h2>Your Cart 🛒</h2>
+
+
+<div id="cartItems" class="product-container">
+
+</div>
+
+
+<h2 id="totalAmount"></h2>
+
+
+</section>
+
+
+
+
+<script>
+
+
+function displayCart(){
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let cartBox = document.getElementById("cartItems");
+
+    let total = 0;
+
+
+    cartBox.innerHTML = "";
+
+
+    if(cart.length === 0){
+
+        cartBox.innerHTML = "<h3>Your cart is empty 🛒</h3>";
+
+        document.getElementById("totalAmount").innerHTML = "Total : ₹0";
+
+        return;
+
+    }
+
+
+
+    cart.forEach((item,index)=>{
+
+
+        total += Number(item.price);
+
+
+
+        cartBox.innerHTML += `
+
+
+        <div class="product-card">
+
+
+            <h3>${item.name}</h3>
+
+
+            <p class="price">
+                ₹${item.price}
+            </p>
+
+
+            <button onclick="removeCart(${index})">
+                Remove
+            </button>
+
+
+        </div>
+
+
+        `;
+
+
+    });
+
+
+
+    document.getElementById("totalAmount").innerHTML =
+    "Total : ₹" + total;
+
+
+}
+
+
+
+
+function removeCart(index){
+
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+
+    cart.splice(index,1);
+
+
+    localStorage.setItem("cart",JSON.stringify(cart));
+
+
+    displayCart();
+
+
+}
+
+
+
+displayCart();
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

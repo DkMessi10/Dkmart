@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product - DK MART</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        <span class="dk">DK</span>
+        <span class="mart">MART</span>
+    </div>
+
+    <div class="header-icons">
+        <a href="/admin">Dashboard</a>
+        <a href="/manage_products">Manage Products</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+</header>
+
+<section class="contact-section">
+
+    <h2>✏️ Edit Product</h2>
+
+    <form action="/update_product/{{ product[0] }}" method="POST" class="contact-form">
+
+        <input type="text"
+               name="name"
+               value="{{ product[1] }}"
+               placeholder="Product Name"
+               required>
+
+        <input type="number"
+               name="price"
+               value="{{ product[2] }}"
+               placeholder="Price"
+               required>
+
+        <input type="text"
+               name="image"
+               value="{{ product[3] }}"
+               placeholder="Image Name (example: mobile.jpg)"
+               required>
+
+        <textarea
+            name="description"
+            rows="4"
+            placeholder="Description"
+            required>{{ product[4] }}</textarea>
+
+        <input type="text"
+               name="category"
+               value="{{ product[5] }}"
+               placeholder="Category"
+               required>
+
+        <button type="submit">
+            ✅ Update Product
+        </button>
+
+    </form>
+
+</section>
+
+</body>
+
+</html>

@@ -1,0 +1,257 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f4f4;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#222;
+color:white;
+padding:20px;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+header input{
+width:300px;
+padding:10px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+.hero{
+background:linear-gradient(to right,#ff9800,#ff5722);
+color:white;
+text-align:center;
+padding:80px;
+}
+
+.hero button{
+margin-top:20px;
+padding:10px 25px;
+border:none;
+cursor:pointer;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:40px;
+}
+
+.card{
+background:white;
+padding:20px;
+text-align:center;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+.card img{
+width:100%;
+}
+
+.card button{
+margin-top:10px;
+padding:10px;
+width:100%;
+background:green;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:20px;
+}.login-box{
+width:350px;
+margin:80px auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+.login-box h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+.login-box input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+.login-box button{
+width:100%;
+padding:12px;
+background:#007bff;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.login-box button:hover{
+background:#0056b3;
+}
+
+.login-box p{
+text-align:center;
+margin-top:15px;
+}.cart{
+width:80%;
+margin:40px auto;
+}
+
+.cart-item{
+background:white;
+padding:20px;
+margin-bottom:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.cart-item button{
+background:red;
+color:white;
+border:none;
+padding:10px 20px;
+cursor:pointer;
+border-radius:5px;
+}
+
+.total{
+background:white;
+padding:20px;
+text-align:right;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+.total button{
+background:green;
+color:white;
+border:none;
+padding:12px 25px;
+cursor:pointer;
+border-radius:5px;
+}.product-details{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:50px;
+padding:50px;
+}
+
+.product-image img{
+width:400px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+.product-info{
+max-width:500px;
+}
+
+.product-info h1{
+margin-bottom:20px;
+}
+
+.product-info h2{
+color:green;
+margin-bottom:20px;
+}
+
+.product-info p{
+margin-bottom:20px;
+line-height:1.6;
+}
+
+.product-info button{
+padding:12px 25px;
+margin-right:10px;
+border:none;
+cursor:pointer;
+background:#ff9900;
+color:white;
+border-radius:5px;
+font-size:16px;
+}
+
+.product-info button:last-child{
+background:#28a745;
+}.checkout-box{
+width:450px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+.checkout-box h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+.checkout-box input,
+.checkout-box select{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+.checkout-box button{
+width:100%;
+padding:12px;
+background:green;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-size:16px;
+}
+.order-btn {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #16a34a;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.order-btn:hover {
+    background: #15803d;
+}

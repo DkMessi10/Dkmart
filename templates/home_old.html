@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ShopMart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+
+    <h1>🛒 ShopMart</h1>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search Products...">
+        <button onclick="searchProduct()">🔍 Search</button>
+    </div>
+
+    <nav>
+
+    <a href="/">🏠 Home</a>
+
+    <a href="/products">🛍 Products</a>
+
+    <a href="/cart">🛒 Cart</a>
+    <a href="/myorders">📦 My Orders</a>
+
+
+    {% if session.get('user') %}
+
+        <a href="/logout">🚪 Logout</a>
+
+
+    {% else %}
+
+        <a href="/login">👤 Login</a>
+
+        <a href="/register">📝 Register</a>
+
+
+    {% endif %}
+
+
+</nav>
+
+</header>
+
+
+<!-- AUTO IMAGE SLIDER -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <h1>Welcome to ShopMart 🛒</h1>
+
+        <h2>Best Products at Best Prices</h2>
+
+        <p>
+            Mobiles, Laptops, Headphones and more...
+        </p>
+
+        <a href="/products">
+            <button>
+                🛍 Shop Now
+            </button>
+        </a>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <img id="sliderImage"
+        src="{{ url_for('static', filename='banner11.jpg') }}">
+
+    </div>
+
+</section>
+
+
+
+<h2 style="text-align:center;">⭐ Featured Products</h2>
+
+<div class="products-container">
+
+    <div class="product">
+        <img src="{{ url_for('static', filename='mobile.jpg') }}" width="200">
+        <h3>📱 Mobile Phone</h3>
+        <p>Starting at ₹15,000</p>
+    </div>
+
+
+    <div class="product">
+        <img src="{{ url_for('static', filename='laptop.jpg') }}" width="200">
+        <h3>💻 Laptop</h3>
+        <p>Starting at ₹50,000</p>
+    </div>
+
+
+    <div class="product">
+        <img src="{{ url_for('static', filename='headphone.jpg') }}" width="200">
+        <h3>🎧 Headphone</h3>
+        <p>Starting at ₹2,000</p>
+    </div>
+
+</div>
+
+
+<hr>
+
+
+<h2 style="text-align:center;">📂 Shop by Category</h2>
+
+
+<div class="products-container">
+
+    <div class="product">
+        <h2>📱</h2>
+        <h3>Mobiles</h3>
+    </div>
+
+
+    <div class="product">
+        <h2>💻</h2>
+        <h3>Laptops</h3>
+    </div>
+
+
+    <div class="product">
+        <h2>🎧</h2>
+        <h3>Headphones</h3>
+    </div>
+
+
+    <div class="product">
+        <h2>⌚</h2>
+        <h3>Smart Watches</h3>
+    </div>
+
+</div>
+
+
+<hr>
+
+
+<section class="offers">
+
+<h2>🔥 Today's Offers</h2>
+
+
+<div class="offer-box">
+
+<h3>📱 Mobile Phone</h3>
+<p>Flat 20% OFF</p>
+
+</div>
+
+
+<div class="offer-box">
+
+<h3>💻 Laptop</h3>
+<p>Exchange Offer Available</p>
+
+</div>
+
+
+<div class="offer-box">
+
+<h3>🎧 Headphone</h3>
+<p>Buy 1 Get 1 Free</p>
+
+</div>
+
+
+</section>
+
+
+
+<hr>
+
+
+
+<section class="why">
+
+<h2>Why Choose ShopMart?</h2>
+
+
+<div class="products-container">
+
+
+<div class="product">
+
+<h3>🚚 Fast Delivery</h3>
+<p>Delivery within 24 Hours.</p>
+
+</div>
+
+
+<div class="product">
+
+<h3>🔒 Secure Payment</h3>
+<p>100% Safe Online Payments.</p>
+
+</div>
+
+
+<div class="product">
+
+<h3>💯 Genuine Products</h3>
+<p>Original Products with Warranty.</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<hr>
+
+
+
+<section class="reviews">
+
+
+<h2 style="text-align:center;">⭐ Customer Reviews</h2>
+
+
+<div class="products-container">
+
+
+<div class="product">
+
+<h3>⭐⭐⭐⭐⭐</h3>
+<p>"Very fast delivery. Excellent service!"</p>
+<b>- naan thanda leo</b>
+
+</div>
+
+
+
+<div class="product">
+
+<h3>⭐⭐⭐⭐⭐</h3>
+<p>"Best prices and genuine products."</p>
+<b>- parasuuuu</b>
+
+</div>
+
+
+
+<div class="product">
+
+<h3>⭐⭐⭐⭐⭐</h3>
+<p>"I will definitely shop again!"</p>
+<b>- dhilip</b>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<hr>
+
+
+
+<footer>
+
+<h3>© 2026 ShopMart</h3>
+
+<p>Fast Delivery | Secure Payment | 24/7 Customer Support</p>
+
+<p>Email: support@shopmart.com</p>
+
+</footer>
+
+
+
+
+<script>
+
+
+// AUTO IMAGE SLIDER
+
+let images = [
+
+"{{ url_for('static', filename='banner11.jpg') }}",
+
+"{{ url_for('static', filename='banner12.jpg') }}",
+
+"{{ url_for('static', filename='banner13.jpg') }}",
+
+"{{ url_for('static', filename='banner14.jpg') }}"
+
+];
+
+
+let index = 0;
+
+
+setInterval(function(){
+
+
+index++;
+
+
+if(index >= images.length){
+
+index = 0;
+
+}
+
+
+document.getElementById("sliderImage").src = images[index];
+
+
+},3000);
+
+
+
+
+
+// SEARCH FUNCTION
+
+
+function searchProduct(){
+
+
+let product = document.getElementById("searchInput").value.toLowerCase().trim();
+
+
+
+if(product=="mobile" || product=="mobile phone"){
+
+window.location="/products";
+
+}
+
+
+else if(product=="laptop"){
+
+window.location="/products";
+
+}
+
+
+else if(product=="headphone"){
+
+window.location="/products";
+
+}
+
+
+else if(product==""){
+
+
+alert("Please enter a product name.");
+
+
+}
+
+
+else{
+
+
+alert("Product Not Found");
+
+
+}
+
+
+}
+
+
+
+</script>
+
+
+</body>
+</html>

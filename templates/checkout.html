@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Checkout - ShopMart</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>🛒 ShopMart</h1>
+
+
+<nav>
+
+<a href="/">🏠 Home</a>
+
+<a href="/products">🛍 Products</a>
+
+<a href="/cart">🛒 Cart</a>
+<a href="/myorders">📦 My Orders</a>
+
+
+{% if session.get('user') %}
+
+<a href="/logout">🚪 Logout</a>
+
+
+{% else %}
+
+<a href="/login">👤 Login</a>
+
+<a href="/register">📝 Register</a>
+
+
+{% endif %}
+
+
+</nav>
+
+
+</header>
+
+
+
+
+
+<h2 style="text-align:center;">
+💳 Checkout
+</h2>
+
+
+
+
+<div class="product">
+
+
+<h3>Customer Details</h3>
+
+
+<input type="text" id="name" placeholder="Full Name">
+
+<br><br>
+
+
+<input type="text" id="phone" placeholder="Phone Number">
+
+<br><br>
+
+
+<textarea id="address" placeholder="Address"></textarea>
+
+<br><br>
+
+
+
+
+<select id="payment">
+
+
+<option>Cash on Delivery</option>
+
+<option>UPI Payment</option>
+
+<option>Card Payment</option>
+
+
+</select>
+
+
+
+<br><br>
+
+
+
+
+<h3 id="totalAmount">
+
+Total Amount: ₹0
+
+</h3>
+
+
+
+
+<br>
+
+
+
+<form action="/place_order" method="POST" onsubmit="return placeOrder()">
+
+<input type="hidden" name="product_name" id="product_name">
+
+<input type="hidden" name="price" id="price">
+
+
+<button type="submit">
+
+✅ Place Order
+
+</button>
+
+
+</form>
+
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+
+let total = 0;
+
+
+
+cart.forEach(function(item){
+
+
+total = total + Number(item.price);
+
+
+});
+let productName = "";
+
+let productPrice = 0;
+
+
+cart.forEach(function(item){
+
+    productName += item.name + ", ";
+
+    productPrice += Number(item.price);
+
+});
+
+
+document.getElementById("product_name").value = productName;
+
+
+document.getElementById("price").value = productPrice;
+
+
+
+
+document.getElementById("totalAmount").innerHTML =
+
+"Total Amount: ₹" + total;
+
+
+
+
+
+
+function placeOrder(){
+
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let address = document.getElementById("address").value;
+    let payment = document.getElementById("payment").value;
+
+    if(name=="" || phone=="" || address==""){
+
+        alert("⚠️ Please fill all details");
+        return false;
+
+    }
+
+    alert(
+        "🎉 Order Placed Successfully!\n\n" +
+        "Name: " + name +
+        "\nPayment: " + payment +
+        "\nAmount: ₹" + total
+    );
+
+    localStorage.removeItem("cart");
+
+    return true;
+}
+
+
+</script>
+
+
+
+
+</body>
+
+</html>
